@@ -40,11 +40,11 @@ if ($remote_smslog_id) {
     //if we have an smslog_id, then this is referring to an outgoing message, else it could be incoming
     if ($smslog_id) {
         
-    	// p_status :
-	    // 0 = pending
-	    // 1 = sent
-	    // 2 = failed
-    	// 3 = delivered
+        // p_status :
+        // 0 = pending
+        // 1 = sent
+        // 2 = failed
+        // 3 = delivered
 
 
         $data = sendsms_get_sms($smslog_id);
