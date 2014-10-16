@@ -23,16 +23,22 @@ function cdyne_template_hook_sendsms($smsc, $sms_sender,$sms_footer,$sms_to,$sms
 	$sms_footer = stripslashes($sms_footer);
 	$sms_msg = stripslashes($sms_msg);
 	
+    if ($unicode == 0) {
+        $unicode = FALSE;
+    } else {
+        $unicode = TRUE;
+    }
 
     // build request
 	$json = '{
               "LicenseKey":"00000000-0000-0000-0000-000000000000",
+              "IsUnicode":' . $unicode . '
               "SMSRequests":[{
                   "AssignedDID":"' . $sms_sender . '",
                   "Message":"' . $sms_msg . ' ' . $sms_footer . '",
                   "PhoneNumbers":["' . $sms_to . '"],
                   "ReferenceID":"' . 'smslog_id: ' . $smslog_id . ' uid:' . $uid . '",
-                  "StatusPostBackURL":""
+                  "StatusPostBackURL":" ' . '?smsc=cdyne' . '"
                   }]
              }';
 
@@ -49,8 +55,9 @@ function cdyne_template_hook_sendsms($smsc, $sms_sender,$sms_footer,$sms_to,$sms
     curl_close($cURL);
 
     $decoded = json_decode($result);
-    
-    _log("enter smsc:" . $smsc . " smslog_id:" . $smslog_id . " uid:" . $uid . " to:" . $sms_to . " CdyneMessageID: " . $decoded['0']->MessageID . " SMSErrorCode: " . $decoded['0']->SMSError, 3, "cdyne_hook_sendsms result");
+    $logText = "enter smsc:" . $smsc . " smslog_id:" . $smslog_id . " uid:" . $uid . " to:" . $sms_to . " CdyneMessageID: " . $decoded['0']->MessageID . " SMSErrorCode: " . $decoded['0']->SMSError;
+
+    _log($logText, 3, "cdyne_hook_sendsms result");
 
     if ($decoded['0']->SMSError == 0) {
         return TRUE;
