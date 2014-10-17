@@ -974,7 +974,7 @@ CREATE TABLE `playsms_gatewayCdyne` (
   `c_timestamp` bigint(20) NOT NULL DEFAULT '0',
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `local_smslog_id` int(11) NOT NULL DEFAULT '0',
-  `cdyne_smslog_id` varchar(36) NOT NULL DEFAULT '0',
+  `remote_smslog_id` varchar(36) NOT NULL DEFAULT '0',
   `status` int(11) NOT NULL DEFAULT '0',
   `status_text` varchar(100) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)

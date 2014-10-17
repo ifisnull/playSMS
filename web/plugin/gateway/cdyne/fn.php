@@ -14,12 +14,12 @@ defined('_SECURE_') or die('Forbidden');
 // $smslog_id	: sms ID
 // $sms_type	: send flash message when the value is "flash"
 // $unicode		: send unicode character (16 bit)
-function cdyne_template_hook_sendsms($smsc, $sms_sender,$sms_footer,$sms_to,$sms_msg,$uid='',$gpid=0,$smslog_id=0,$sms_type='text',$unicode=0) {
-	global $cdyne_param;   // global all variables needed, eg: varibles from config.php
+function cdyne_hook_sendsms($smsc, $sms_sender,$sms_footer,$sms_to,$sms_msg,$uid='',$gpid=0,$smslog_id=0,$sms_type='text',$unicode=0) {
+    include $core_config['apps_path']['plug']."/gateway/cdyne/config.php";
 
 	_log("enter smsc:" . $smsc . " smslog_id:" . $smslog_id . " uid:" . $uid . " to:" . $sms_to, 3, "cdyne_hook_sendsms");
 	
-	$sms_sender = stripslashes($sms_sender);
+	// $sms_sender = stripslashes($sms_sender);
 	$sms_footer = stripslashes($sms_footer);
 	$sms_msg = stripslashes($sms_msg);
 	
@@ -29,12 +29,15 @@ function cdyne_template_hook_sendsms($smsc, $sms_sender,$sms_footer,$sms_to,$sms
         $unicode = TRUE;
     }
 
+    $key = $plugin_config['cdyne']['licensekey'];
+    $assigned_did = $plugin_config['cdyne']['did_sender'];
+
     // build request
 	$json = '{
-              "LicenseKey":"00000000-0000-0000-0000-000000000000",
+              "LicenseKey":"' . $key . '",
               "IsUnicode":' . $unicode . '
               "SMSRequests":[{
-                  "AssignedDID":"' . $sms_sender . '",
+                  "AssignedDID":"' . $assigned_did . '",
                   "Message":"' . $sms_msg . ' ' . $sms_footer . '",
                   "PhoneNumbers":["' . $sms_to . '"],
                   "ReferenceID":"' . 'smslog_id: ' . $smslog_id . ' uid:' . $uid . '",
@@ -62,6 +65,7 @@ function cdyne_template_hook_sendsms($smsc, $sms_sender,$sms_footer,$sms_to,$sms
     if ($decoded['0']->SMSError == 0) {
         return TRUE;
     } else {
+        dlr($smslog_id, $uid, 2); //mark as failed
         return FALSE;
     }
 }
