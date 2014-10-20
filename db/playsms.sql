@@ -967,7 +967,7 @@ UNLOCK TABLES;
 -- Table structure for table 'playsms_gatewayCdyne'
 --
 
-DROP TABLE IF EXISTS `play_gatewayCdyne`;
+DROP TABLE IF EXISTS `playsms_gatewayCdyne`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `playsms_gatewayCdyne` (
@@ -1011,12 +1011,9 @@ CREATE TABLE `playsms_gatewayCdyne_config` (
 
 LOCK TABLES `playsms_gatewayCdyne_config` WRITE;
 /*!40000 ALTER TABLE `playsms_gatewayCdyne_config` DISABLE KEYS */;
-INSERT INTO `playsms_gatewayCdyne_config` VALUES (0,'cdyne','00000000-0000-0000-0000-000000000000');
+INSERT INTO `playsms_gatewayCdyne_config` VALUES (0,'cdyne','00000000-0000-0000-0000-000000000000','');
 /*!40000 ALTER TABLE `playsms_gatewayCdyne_config` ENABLE KEYS */;
 UNLOCK TABLES;
-
---STOP
-
 
 --
 -- Table structure for table `playsms_gatewayNexmo`
