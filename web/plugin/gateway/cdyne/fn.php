@@ -19,14 +19,19 @@ function cdyne_hook_sendsms($smsc, $sms_sender,$sms_footer,$sms_to,$sms_msg,$uid
 
 	_log("enter smsc:" . $smsc . " smslog_id:" . $smslog_id . " uid:" . $uid . " to:" . $sms_to, 3, "cdyne_hook_sendsms");
 	
+    global $plugin_config;
+
+    // override plugin gateway configuration by smsc configuration
+    $plugin_config = gateway_apply_smsc_config($smsc, $plugin_config);
+
 	// $sms_sender = stripslashes($sms_sender);
 	$sms_footer = stripslashes($sms_footer);
 	$sms_msg = stripslashes($sms_msg);
 	
     if ($unicode == 0) {
-        $unicode = FALSE;
+        $unicode = 'FALSE';
     } else {
-        $unicode = TRUE;
+        $unicode = 'TRUE';
     }
 
     $key = $plugin_config['cdyne']['licensekey'];
@@ -45,7 +50,7 @@ function cdyne_hook_sendsms($smsc, $sms_sender,$sms_footer,$sms_to,$sms_msg,$uid
                   }]
              }';
 
-    $url = 'http:sms2.cdyne.com/sms.svc/AdvancedSMSSent';
+    $url = 'http://sms2.cdyne.com/sms.svc/AdvancedSMSSend';
 
     $cURL = curl_init();
     curl_setopt($cURL,CURLOPT_URL,$url);
