@@ -1003,7 +1003,7 @@ CREATE TABLE `playsms_gatewayCdyne_config` (
   `cfg_api_licensekey` varchar(36) DEFAULT NULL,
   `cfg_assigned_did` varchar(20) DEFAULT NULL,
   `cfg_datetime_timezone` varchar(30) NOT NULL DEFAULT '',
-  `cfg_callback_url` varchar(200) NOT NULL DEFAULT '',
+  `cfg_callback_url` varchar(200) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
