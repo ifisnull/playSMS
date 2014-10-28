@@ -7,7 +7,7 @@ if ($db_row = dba_fetch_array($db_result)) {
 	$plugin_config['cdyne']['name'] = $db_row['cfg_name'];
     $plugin_config['cdyne']['api_licensekey'] = $db_row['cfg_api_licensekey'];
 	$plugin_config['cdyne']['assigned_did'] = $db_row['cfg_assigned_did'];
-    $plugin_config['nexmo']['datetime_timezone'] = $db_row['cfg_datetime_timezone'];
+    $plugin_config['cdyne']['datetime_timezone'] = $db_row['cfg_datetime_timezone'];
 }
 
 // smsc configuration

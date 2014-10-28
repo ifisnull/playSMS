@@ -37,7 +37,7 @@ function cdyne_hook_sendsms($smsc, $sms_sender,$sms_footer,$sms_to,$sms_msg,$uid
     $key = $plugin_config['cdyne']['api_licensekey'];
     $assigned_did = $plugin_config['cdyne']['assigned_did'];
 
-    $callback_url = $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . "/plugin/gateway/nexmo/callback.php";
+    $callback_url = $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . "/plugin/gateway/cdyne/callback.php";
     $callback_url = str_replace("//", "/", $callback_url);
     $callback_url = "http://" . $callback_url;
 
