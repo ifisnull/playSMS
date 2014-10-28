@@ -1001,7 +1001,8 @@ CREATE TABLE `playsms_gatewayCdyne_config` (
   `c_timestamp` bigint(20) NOT NULL DEFAULT '0',
   `cfg_name` varchar(20) NOT NULL DEFAULT 'cdyne',
   `cfg_api_licensekey` varchar(36) DEFAULT NULL,
-  `cfg_assigned_did` varchar(20) DEFAULT NULL
+  `cfg_assigned_did` varchar(20) DEFAULT NULL,
+  `cfg_datetime_timezone` varchar(30) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1011,7 +1012,7 @@ CREATE TABLE `playsms_gatewayCdyne_config` (
 
 LOCK TABLES `playsms_gatewayCdyne_config` WRITE;
 /*!40000 ALTER TABLE `playsms_gatewayCdyne_config` DISABLE KEYS */;
-INSERT INTO `playsms_gatewayCdyne_config` VALUES (0,'cdyne','00000000-0000-0000-0000-000000000000', '');
+INSERT INTO `playsms_gatewayCdyne_config` VALUES (0,'cdyne','00000000-0000-0000-0000-000000000000', '', '');
 /*!40000 ALTER TABLE `playsms_gatewayCdyne_config` ENABLE KEYS */;
 UNLOCK TABLES;
 
