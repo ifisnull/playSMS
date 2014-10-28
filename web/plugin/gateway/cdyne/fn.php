@@ -36,21 +36,19 @@ function cdyne_hook_sendsms($smsc, $sms_sender,$sms_footer,$sms_to,$sms_msg,$uid
 
     $key = $plugin_config['cdyne']['api_licensekey'];
     $assigned_did = $plugin_config['cdyne']['assigned_did'];
-
-    $callback_url = $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . "/plugin/gateway/cdyne/callback.php";
-    $callback_url = str_replace("//", "/", $callback_url);
-    $callback_url = "http://" . $callback_url;
+    $callback_url = $plugin_config['cdyne']['callback_url'];
 
     // build request
+    //"IsUnicode":"' . trim($unicode) . '",
+
 	$json = '{
               "LicenseKey":"' . trim($key) . '",
-              "IsUnicode":"' . trim($unicode) . '",
               "SMSRequests":[{
                   "AssignedDID":"' . trim($assigned_did) . '",
                   "Message":"' . trim($sms_msg) . ' ' . trim($sms_footer) . '",
                   "PhoneNumbers":["' . trim($sms_to) . '"],
                   "ReferenceID":"' . 'smslog_id: ' . $smslog_id . ' uid:' . $uid . '",
-                  "StatusPostBackURL":" ' . $callback_url . '?smsc=' . $smsc . '&client-ref=' . $smslog_id . '"
+                  "StatusPostBackURL":"' . $callback_url . '?smsc=' . $smsc . '&client-ref=' . $smslog_id . '"
                   }]
              }';
 
