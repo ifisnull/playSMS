@@ -324,7 +324,7 @@ function user_add($data = array(), $forced = FALSE) {
 					$body .= _('Mobile') . ": " . $data['mobile'] . "\n";
 					$body .= _('Credit') . ": " . $data['credit'] . "\n\n";
 					$body .= $core_config['main']['email_footer'] . "\n\n";
-					$ret['error_string'] = _('User has been added and password has been emailed') . " (" . _('username') . ": " . $data['username'] . ")";
+					$ret['error_string'] = _('Account has been added and password has been emailed') . " (" . _('username') . ": " . $data['username'] . ")";
 					$mail_data = array(
 						'mail_from_name' => $core_config['main']['web_title'],
 						'mail_from' => $core_config['main']['email_service'],
@@ -333,7 +333,7 @@ function user_add($data = array(), $forced = FALSE) {
 						'mail_body' => $body 
 					);
 					if (!sendmail($mail_data)) {
-						$ret['error_string'] = _('User has been added but failed to send email') . " (" . _('username') . ": " . $data['username'] . ")";
+						$ret['error_string'] = _('Account has been added but failed to send email') . " (" . _('username') . ": " . $data['username'] . ")";
 					}
 				}
 			} else {
@@ -343,7 +343,7 @@ function user_add($data = array(), $forced = FALSE) {
 			$ret['error_string'] = $v['error_string'];
 		}
 	} else {
-		$ret['error_string'] = _('User registration is not available');
+		$ret['error_string'] = _('Account registration is not available');
 	}
 	return $ret;
 }
@@ -380,7 +380,7 @@ function user_edit($uid, $data = array()) {
 	}
 	$up['lastupdate_datetime'] = core_adjust_datetime(core_get_datetime());
 	
-	if ($up['name'] && $up['email']) {
+	if ($up['name']) {
 		$v = user_edit_validate($up);
 		if ($v['status']) {
 			$continue = true;
@@ -454,7 +454,7 @@ function user_remove($uid, $forced = FALSE) {
 					))) {
 						user_banned_remove($uid);
 						_log('user removed u:' . $username . ' uid:' . $uid, 2, 'user_remove');
-						$ret['error_string'] = _('User has been removed') . " (" . _('username') . ": " . $username . ")";
+						$ret['error_string'] = _('Account has been removed') . " (" . _('username') . ": " . $username . ")";
 						$ret['status'] = TRUE;
 					}
 				}
@@ -503,8 +503,14 @@ function user_edit_conf($uid, $data = array()) {
 		}
 		unset($up['new_token']);
 		
-		$c_sender = core_sanitize_sender($up['sender']);
-		if (sender_id_check($uid, $c_sender)) {
+		// if sender ID is sent then validate it
+		if ($c_sender = core_sanitize_sender($up['sender'])) {
+			$check_sender = (sender_id_check($uid, $c_sender) ? TRUE : FALSE);
+		} else {
+			$check_sender = TRUE;
+		}
+		
+		if ($check_sender) {
 			$up['sender'] = $c_sender;
 			
 			$c_footer = core_sanitize_footer($up['footer']);
@@ -624,7 +630,7 @@ function user_session_remove($uid = '', $sid = '', $hash = '') {
 }
 
 /**
- * Add user to banned user list
+ * Add account to banned account list
  *
  * @param integer $uid
  *        	User ID
@@ -657,7 +663,7 @@ function user_banned_add($uid) {
 }
 
 /**
- * Remove user from banned user list
+ * Remove account from banned account list
  *
  * @param integer $uid
  *        	User ID
@@ -747,7 +753,7 @@ function user_setdatabyuid($uid, $data) {
  * @param integer $uid
  *        	User ID
  * @param integer $parent_uid
- *        	Parent user ID
+ *        	Parent account ID
  * @return boolean TRUE when parent sets
  */
 function user_setparentbyuid($uid, $parent_uid) {
@@ -773,7 +779,7 @@ function user_setparentbyuid($uid, $parent_uid) {
  *
  * @param integer $uid
  *        	User ID
- * @return mixed Parent user ID or FALSE on error
+ * @return mixed Parent account ID or FALSE on error
  */
 function user_getparentbyuid($uid) {
 	$uid = (int) $uid;
