@@ -29,9 +29,9 @@ function cdyne_hook_sendsms($smsc, $sms_sender,$sms_footer,$sms_to,$sms_msg,$uid
 	$sms_msg = stripslashes($sms_msg);
 	
     if ($unicode == 0) {
-        $unicode = 'FALSE';
+        $unicode = 'False';
     } else {
-        $unicode = 'TRUE';
+        $unicode = 'True';
     }
 
     $key = $plugin_config['cdyne']['api_licensekey'];
@@ -44,7 +44,7 @@ function cdyne_hook_sendsms($smsc, $sms_sender,$sms_footer,$sms_to,$sms_msg,$uid
     // build request
 	$json = '{
               "LicenseKey":"' . $key . '",
-              "IsUnicode":' . $unicode . '
+              "IsUnicode":"' . $unicode . '",
               "SMSRequests":[{
                   "AssignedDID":"' . $assigned_did . '",
                   "Message":"' . $sms_msg . ' ' . $sms_footer . '",
