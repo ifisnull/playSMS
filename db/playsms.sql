@@ -964,6 +964,58 @@ INSERT INTO `playsms_gatewayMsgtoolbox_config` VALUES (0,'msgtoolbox','http://se
 UNLOCK TABLES;
 
 --
+-- Table structure for table 'playsms_gatewayCdyne'
+--
+
+DROP TABLE IF EXISTS `playsms_gatewayCdyne`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `playsms_gatewayCdyne` (
+  `c_timestamp` bigint(20) NOT NULL DEFAULT '0',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `local_smslog_id` int(11) NOT NULL DEFAULT '0',
+  `remote_smslog_id` varchar(36) NOT NULL DEFAULT '0',
+  `status` int(11) NOT NULL DEFAULT '0',
+  `status_text` varchar(100) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `playsms_gatewayCdyne`
+--
+
+LOCK TABLES `playsms_gatewayCdyne` WRITE;
+/*!40000 ALTER TABLE `playsms_gatewayCdyne` DISABLE KEYS */;
+/*!40000 ALTER TABLE `playsms_gatewayCdyne` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `playsms_gatewayCdyne_config`
+--
+
+DROP TABLE IF EXISTS `playsms_gatewayCdyne_config`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `playsms_gatewayCdyne_config` (
+  `c_timestamp` bigint(20) NOT NULL DEFAULT '0',
+  `cfg_name` varchar(20) NOT NULL DEFAULT 'cdyne',
+  `cfg_api_licensekey` varchar(36) DEFAULT NULL,
+  `cfg_assigned_did` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `playsms_gatewayCdyne_config`
+--
+
+LOCK TABLES `playsms_gatewayCdyne_config` WRITE;
+/*!40000 ALTER TABLE `playsms_gatewayCdyne_config` DISABLE KEYS */;
+INSERT INTO `playsms_gatewayCdyne_config` VALUES (0,'cdyne','00000000-0000-0000-0000-000000000000', '');
+/*!40000 ALTER TABLE `playsms_gatewayCdyne_config` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `playsms_gatewayNexmo`
 --
 
@@ -1650,55 +1702,3 @@ INSERT INTO `playsms_tblGateway` (`id`, `created`, `last_update`, `name`, `gatew
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2014-06-29 22:25:31
-
---
--- Table structure for table 'playsms_gatewayCdyne'
---
-
-DROP TABLE IF EXISTS `playsms_gatewayCdyne`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `playsms_gatewayCdyne` (
-  `c_timestamp` bigint(20) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `local_smslog_id` int(11) NOT NULL DEFAULT '0',
-  `remote_smslog_id` varchar(36) NOT NULL DEFAULT '0',
-  `status` int(11) NOT NULL DEFAULT '0',
-  `status_text` varchar(100) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `playsms_gatewayCdyne`
---
-
-LOCK TABLES `playsms_gatewayCdyne` WRITE;
-/*!40000 ALTER TABLE `playsms_gatewayCdyne` DISABLE KEYS */;
-/*!40000 ALTER TABLE `playsms_gatewayCdyne` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `playsms_gatewayCdyne_config`
---
-
-DROP TABLE IF EXISTS `playsms_gatewayCdyne_config`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `playsms_gatewayCdyne_config` (
-  `c_timestamp` bigint(20) NOT NULL DEFAULT '0',
-  `cfg_name` varchar(20) NOT NULL DEFAULT 'cdyne',
-  `cfg_api_licensekey` varchar(36) DEFAULT NULL,
-  `cfg_assigned_did` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `playsms_gatewayCdyne_config`
---
-
-LOCK TABLES `playsms_gatewayCdyne_config` WRITE;
-/*!40000 ALTER TABLE `playsms_gatewayCdyne_config` DISABLE KEYS */;
-INSERT INTO `playsms_gatewayCdyne_config` VALUES (0,'cdyne','00000000-0000-0000-0000-000000000000', '');
-/*!40000 ALTER TABLE `playsms_gatewayCdyne_config` ENABLE KEYS */;
-UNLOCK TABLES;
