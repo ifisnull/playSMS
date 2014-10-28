@@ -8,6 +8,7 @@
 		<tr><td>{{ LicenseKey }}</td><td><input type=text maxlength=36 name=up_licensekey value="{{ cdyne_param_licensekey }}"> {{ HINT_FILL_KEY }}</td></tr>
 		<tr><td>{{ Module SenderID }}</td><td><input type=text maxlength=16 name=up_module_sender value="{{ cdyne_param_module_sender }}"> {{ HINT_GLOBAL_SENDER }}</td></tr>
     	<tr><td>{{ Module timezone }}</td><td><input type=text size=5 maxlength=5 name=up_global_timezone value="{{ cdyne_param_datetime_timezone }}"> {{ HINT_TIMEZONE }}</td></tr>
+        <tr><td>{{ PostBackUrl }}</td><td><input type=text maxlength=200 name=up_callback_url value="{{ cdyne_param_callback_url }}"> {{ HINT_CALLBACK }}</td></tr>
 	</tbody>
 </table>
 <p><input type=submit class=button value="{{ Save }}">

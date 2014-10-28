@@ -43,12 +43,12 @@ function cdyne_hook_sendsms($smsc, $sms_sender,$sms_footer,$sms_to,$sms_msg,$uid
 
     // build request
 	$json = '{
-              "LicenseKey":"' . $key . '",
-              "IsUnicode":"' . $unicode . '",
+              "LicenseKey":"' . trim($key) . '",
+              "IsUnicode":"' . trim($unicode) . '",
               "SMSRequests":[{
-                  "AssignedDID":"' . $assigned_did . '",
-                  "Message":"' . $sms_msg . ' ' . $sms_footer . '",
-                  "PhoneNumbers":["' . $sms_to . '"],
+                  "AssignedDID":"' . trim($assigned_did) . '",
+                  "Message":"' . trim($sms_msg) . ' ' . trim($sms_footer) . '",
+                  "PhoneNumbers":["' . trim($sms_to) . '"],
                   "ReferenceID":"' . 'smslog_id: ' . $smslog_id . ' uid:' . $uid . '",
                   "StatusPostBackURL":" ' . $callback_url . '?smsc=' . $smsc . '&client-ref=' . $smslog_id . '"
                   }]

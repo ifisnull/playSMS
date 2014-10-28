@@ -8,13 +8,15 @@ if ($db_row = dba_fetch_array($db_result)) {
     $plugin_config['cdyne']['api_licensekey'] = $db_row['cfg_api_licensekey'];
 	$plugin_config['cdyne']['assigned_did'] = $db_row['cfg_assigned_did'];
     $plugin_config['cdyne']['datetime_timezone'] = $db_row['cfg_datetime_timezone'];
+    $plugin_config['cdyne']['callback_url'] = $db_row['cfg_callback_url'];
 }
 
 // smsc configuration
 $plugin_config['cdyne']['_smsc_config_'] = array(
     'api_licensekey' => _('LicenseKey'),
     'assigned_did' => _('Module SenderID'),
-	'datetime_timezone' => _('Module timezone') 
+	'datetime_timezone' => _('Module timezone'),
+    'callback_url' => _('PostBackUrl')
 );
 
 //$gateway_number = $template_param['module_sender'];
