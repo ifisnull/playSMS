@@ -33,7 +33,6 @@ switch (_OP_) {
 		if ($err = $_SESSION['error_string']) {
 			$error_content = "<div class=error_string>$err</div>";
 		}
-                //<tr><td>{{ PostBackUrl }}</td><td><input type=text maxlength=200 name=up_callback_url value="{{ cdyne_param_callback_url }}"> {{ HINT_CALLBACK }}</td></tr>
 
 		$tpl = array(
 			'name' => 'cdyne',
@@ -57,7 +56,7 @@ switch (_OP_) {
 				'CDYNE_FREE_CREDIT' => _('free credits are available for testing purposes'),
 				'BUTTON_BACK' => _back('index.php?app=main&inc=core_gateway&op=gateway_list'),
 				'status_active' => $status_active,
-				'cdyne_param_api_key' => $plugin_config['cdyne']['api_licensekey'],
+				'cdyne_param_licensekey' => $plugin_config['cdyne']['api_licensekey'],
 				'cdyne_param_module_sender' => $plugin_config['cdyne']['assigned_did'],
 				'cdyne_param_datetime_timezone' => $plugin_config['cdyne']['datetime_timezone'],
                 'cdyne_param_callback_url' => $plugin_config['cdyne']['callback_url'],
